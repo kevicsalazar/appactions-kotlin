@@ -15,13 +15,13 @@
  *
  */
 
-package com.devrel.android.fitactions.slices
+package com.kevicsalazar.android.actions.slices
 
 import android.net.Uri
 import androidx.slice.Slice
 import androidx.slice.SliceProvider
-import com.devrel.android.fitactions.DeepLink
-import com.devrel.android.fitactions.model.FitRepository
+import com.kevicsalazar.android.actions.DeepLink
+import com.kevicsalazar.android.actions.model.FitRepository
 
 
 /**
@@ -36,7 +36,7 @@ class FitSliceProvider : SliceProvider() {
         /**
          * The Slice authority as defined in the AndroidManifest
          */
-        internal const val SLICE_AUTHORITY = "com.devrel.android.fitactions.slices.provider"
+        internal const val SLICE_AUTHORITY = "com.kevicsalazar.android. actions.slices.provider"
     }
 
     /**

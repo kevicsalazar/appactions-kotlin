@@ -15,7 +15,7 @@
  *
  */
 
-package com.devrel.android.fitactions.slices
+package com.kevicsalazar.android.actions.slices
 
 import android.app.PendingIntent
 import android.content.Context
@@ -29,8 +29,8 @@ import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
 import androidx.slice.builders.list
 import androidx.slice.builders.row
-import com.devrel.android.fitactions.FitMainActivity
-import com.devrel.android.fitactions.R
+import com.kevicsalazar.android.actions.FitMainActivity
+import com.kevicsalazar.android.actions.R
 
 /**
  * Base class that defines a Slice for the app.

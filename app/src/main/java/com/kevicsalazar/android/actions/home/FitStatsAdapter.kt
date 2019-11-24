@@ -15,7 +15,7 @@
  *
  */
 
-package com.devrel.android.fitactions.home
+package com.kevicsalazar.android.actions.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -23,8 +23,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.devrel.android.fitactions.R
-import com.devrel.android.fitactions.model.FitActivity
+import com.kevicsalazar.android.actions.R
+import com.kevicsalazar.android.actions.model.FitActivity
 import kotlinx.android.synthetic.main.fit_stats_row.view.*
 import java.util.*
 import java.util.concurrent.TimeUnit

@@ -15,7 +15,7 @@
  *
  */
 
-package com.devrel.android.fitactions
+package com.kevicsalazar.android.actions
 
 import android.app.Application
 import android.content.ContentResolver
@@ -23,7 +23,7 @@ import android.content.Intent
 import android.net.Uri
 import android.service.voice.VoiceInteractionService
 import androidx.slice.SliceManager
-import com.devrel.android.fitactions.slices.FitSliceProvider
+import com.kevicsalazar.android.actions.slices.FitSliceProvider
 
 
 class FitApp : Application() {

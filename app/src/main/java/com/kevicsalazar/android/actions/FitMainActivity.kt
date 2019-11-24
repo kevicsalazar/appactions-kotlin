@@ -15,7 +15,7 @@
  *
  */
 
-package com.devrel.android.fitactions
+package com.kevicsalazar.android.actions
 
 import android.app.SearchManager
 import android.app.assist.AssistContent
@@ -25,11 +25,11 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.devrel.android.fitactions.home.FitStatsFragment
-import com.devrel.android.fitactions.model.FitActivity
-import com.devrel.android.fitactions.model.FitRepository
-import com.devrel.android.fitactions.tracking.FitTrackingFragment
-import com.devrel.android.fitactions.tracking.FitTrackingService
+import com.kevicsalazar.android.actions.home.FitStatsFragment
+import com.kevicsalazar.android.actions.model.FitActivity
+import com.kevicsalazar.android.actions.model.FitRepository
+import com.kevicsalazar.android.actions.tracking.FitTrackingFragment
+import com.kevicsalazar.android.actions.tracking.FitTrackingService
 import com.google.android.gms.actions.SearchIntents
 import com.google.firebase.appindexing.Action
 import com.google.firebase.appindexing.FirebaseUserActions

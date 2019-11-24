@@ -49,7 +49,7 @@
 
         <fulfillment
             fulfillmentMode="actions.fulfillment.SLICE"
-            urlTemplate="content://com.devrel.android.fitactions.slices.provider/stats{?exerciseType}">
+            urlTemplate="content://com.kevicsalazar.android.actions.slices.provider/stats{?exerciseType}">
 
             <!-- If a parameter is set as required, the action will only be fulfilled if the parameter is found -->
             <!-- That's why a fallback urlTemplate needs to be provided for such case. -->

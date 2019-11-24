@@ -15,17 +15,17 @@
  *
  */
 
-package com.devrel.android.fitactions.slices
+package com.kevicsalazar.android.actions.slices
 
 import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.Observer
 import androidx.slice.Slice
 import androidx.slice.builders.*
-import com.devrel.android.fitactions.DeepLink
-import com.devrel.android.fitactions.R
-import com.devrel.android.fitactions.model.FitActivity
-import com.devrel.android.fitactions.model.FitRepository
+import com.kevicsalazar.android.actions.DeepLink
+import com.kevicsalazar.android.actions.R
+import com.kevicsalazar.android.actions.model.FitActivity
+import com.kevicsalazar.android.actions.model.FitRepository
 import java.util.*
 
 /**

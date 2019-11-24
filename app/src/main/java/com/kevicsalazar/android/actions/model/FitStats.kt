@@ -15,24 +15,9 @@
  *
  */
 
-package com.devrel.android.fitactions
+package com.kevicsalazar.android.actions.model
 
 /**
- * Static object that defines the different deep-links
+ * Entity that contains the total user stats.
  */
-object DeepLink {
-    const val STATS = "/stats"
-    const val START = "/start"
-    const val STOP = "/stop"
-
-    /**
-     * Parameter types for the deep-links
-     */
-    object Params {
-        const val ACTIVITY_TYPE = "exerciseType"
-    }
-
-    object Actions {
-        const val ACTION_TOKEN_EXTRA = "actions.fulfillment.extra.ACTION_TOKEN"
-    }
-}
+data class FitStats(val totalCount: Int, val totalDistanceMeters: Double, val totalDurationMs: Long)

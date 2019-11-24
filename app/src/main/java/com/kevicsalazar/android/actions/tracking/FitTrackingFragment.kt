@@ -15,7 +15,7 @@
  *
  */
 
-package com.devrel.android.fitactions.tracking
+package com.kevicsalazar.android.actions.tracking
 
 import android.content.Intent
 import android.os.Build
@@ -26,9 +26,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.devrel.android.fitactions.R
-import com.devrel.android.fitactions.model.FitActivity
-import com.devrel.android.fitactions.model.FitRepository
+import com.kevicsalazar.android.actions.R
+import com.kevicsalazar.android.actions.model.FitActivity
+import com.kevicsalazar.android.actions.model.FitRepository
 import kotlinx.android.synthetic.main.fit_tracking_fragment.*
 import java.util.concurrent.TimeUnit
 

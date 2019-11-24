@@ -15,7 +15,7 @@
  *
  */
 
-package com.devrel.android.fitactions.tracking
+package com.kevicsalazar.android.actions.tracking
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -28,10 +28,10 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.Observer
-import com.devrel.android.fitactions.FitMainActivity
-import com.devrel.android.fitactions.R
-import com.devrel.android.fitactions.model.FitActivity
-import com.devrel.android.fitactions.model.FitRepository
+import com.kevicsalazar.android.actions.FitMainActivity
+import com.kevicsalazar.android.actions.R
+import com.kevicsalazar.android.actions.model.FitActivity
+import com.kevicsalazar.android.actions.model.FitRepository
 
 /**
  * Foreground Android Service that starts an activity and keep tracks of the status showing
