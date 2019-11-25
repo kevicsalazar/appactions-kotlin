@@ -19,6 +19,8 @@ package com.kevicsalazar.android.actions.slices
 
 import android.content.Context
 import android.net.Uri
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.IconCompat
 import androidx.lifecycle.Observer
 import androidx.slice.Slice
 import androidx.slice.builders.*
@@ -58,13 +60,14 @@ class FitStatsSlice(
     /**
      * Create and observe the last activities LiveData.
      */
-    private val activitiesLiveData = fitRepo.getLastActivities(count = 5, type = activityType).apply {
-        // The ContentProvider is called in a different thread and liveData
-        // only works with MainThread
-        handler.post {
-            observeForever(observer)
+    private val activitiesLiveData =
+        fitRepo.getLastActivities(count = 2, type = activityType).apply {
+            // The ContentProvider is called in a different thread and liveData
+            // only works with MainThread
+            handler.post {
+                observeForever(observer)
+            }
         }
-    }
 
     override fun getSlice(): Slice {
         // If the data is still loading, return a loading slice, otherwise create the stats slice.
@@ -75,7 +78,7 @@ class FitStatsSlice(
                 activitiesLiveData.removeObserver(observer)
             }
 
-            createStatsSlice(data)
+            createStatsSliceVertical(data)
         } else {
             createLoadingSlice()
         }
@@ -87,7 +90,10 @@ class FitStatsSlice(
     private fun createLoadingSlice(): Slice = list(context, sliceUri, ListBuilder.INFINITY) {
         header {
             setTitle(
-                context.getString(R.string.slice_stats_loading, context.getString(activityType.nameId)),
+                context.getString(
+                    R.string.slice_stats_loading,
+                    context.getString(activityType.nameId)
+                ),
                 /* isLoading */ true
             )
         }
@@ -101,7 +107,10 @@ class FitStatsSlice(
         return list(context, sliceUri, ListBuilder.INFINITY) {
             // Add the header of the slice
             header {
-                title = context.getString(R.string.slice_stats_title, context.getString(activityType.nameId))
+                title = context.getString(
+                    R.string.slice_stats_title,
+                    context.getString(activityType.nameId)
+                )
                 subtitle = if (data.isEmpty()) {
                     context.getString(R.string.slice_stats_subtitle_no_data)
                 } else {
@@ -115,28 +124,78 @@ class FitStatsSlice(
                 data.forEach { fitActivity ->
                     // For each activity add a cell with the fit data
                     cell {
-                        setFitActivity(fitActivity)
+                        addText(fitActivity.distance())
+                        addTitleText(fitActivity.weekDay())
                     }
                 }
             }
         }
     }
 
-    /**
-     * Given a Slice cell, setup the content to display the given FitActivity.
-     */
-    private fun CellBuilderDsl.setFitActivity(value: FitActivity) {
-        val distanceInKm = String.format("%.2f", value.distanceMeters / 1000)
-        val distance = context.getString(R.string.slice_stats_distance, distanceInKm)
-        addText(distance)
-
-        val calendar = Calendar.getInstance().apply { timeInMillis = value.date }
-        addTitleText(
-            calendar.getDisplayName(
-                Calendar.DAY_OF_WEEK,
-                Calendar.LONG,
-                Locale.getDefault()
-            )
-        )
+    private fun createStatsSliceVertical(data: List<FitActivity>): Slice {
+        return list(context, sliceUri, ListBuilder.INFINITY) {
+            header {
+                title = context.getString(
+                    R.string.slice_stats_title,
+                    context.getString(activityType.nameId)
+                )
+                subtitle = if (data.isEmpty()) {
+                    context.getString(R.string.slice_stats_subtitle_no_data)
+                } else {
+                    context.getString(R.string.slice_stats_subtitle)
+                }
+                primaryAction = createActivityAction()
+            }
+            if (data.isNotEmpty()) {
+                gridRow {
+                    cell {
+                        addImage(IconCompat.createWithResource(context, R.drawable.ic_run_fast), ListBuilder.ICON_IMAGE)
+                        addText(data.totalActivities().toString() + " Activities")
+                    }
+                    cell {
+                        addImage(IconCompat.createWithResource(context, R.drawable.ic_timer), ListBuilder.ICON_IMAGE)
+                        addText(String.format("%.2f", data.totalDuration()) + " Minutes")
+                    }
+                    cell {
+                        addImage(IconCompat.createWithResource(context, R.drawable.ic_distance), ListBuilder.ICON_IMAGE)
+                        addText(String.format("%.2f", data.totalDistance()) + " Km")
+                    }
+                }
+            }
+            data.forEach { fitActivity ->
+                row {
+                    title = fitActivity.distance()
+                    subtitle = fitActivity.weekDay()
+                }
+            }
+            setAccentColor(ContextCompat.getColor(context, android.R.color.holo_blue_light))
+        }
     }
+
+    private fun FitActivity.distance(): String {
+        val distanceInKm = String.format("%.2f", distanceMeters / 1000)
+        return context.getString(R.string.slice_stats_distance, distanceInKm)
+    }
+
+    private fun FitActivity.weekDay(): String {
+        val calendar = Calendar.getInstance().apply { timeInMillis = date }
+        return calendar.getDisplayName(
+            Calendar.DAY_OF_WEEK,
+            Calendar.LONG,
+            Locale.getDefault()
+        ).orEmpty()
+    }
+
+    private fun List<FitActivity>.totalActivities(): Int {
+        return size
+    }
+
+    private fun List<FitActivity>.totalDuration(): Float {
+        return sumBy { it.durationMs.toInt() } / (1000f * 60f)
+    }
+
+    private fun List<FitActivity>.totalDistance(): Double {
+        return sumByDouble { it.distanceMeters / 1000 }
+    }
+
 }

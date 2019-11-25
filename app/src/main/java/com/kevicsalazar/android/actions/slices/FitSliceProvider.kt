@@ -36,7 +36,7 @@ class FitSliceProvider : SliceProvider() {
         /**
          * The Slice authority as defined in the AndroidManifest
          */
-        internal const val SLICE_AUTHORITY = "com.kevicsalazar.android. actions.slices.provider"
+        internal const val SLICE_AUTHORITY = "com.kevicsalazar.android.actions.slices.provider"
     }
 
     /**

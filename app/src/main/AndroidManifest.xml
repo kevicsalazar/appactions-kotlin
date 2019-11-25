@@ -94,6 +94,7 @@
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/actions" />
+
     </application>
 
 </manifest>
